@@ -17,3 +17,4 @@ with certain characteristics of a social network where they can communicate both
 ![Andres Felipe Alzate Oviedo](https://user-images.githubusercontent.com/102881885/203796272-9833b5c1-f288-46d4-bc03-a35093b05aaf.png)
 ![Jhon Jairo Patiño Garcia](https://user-images.githubusercontent.com/102881885/203796375-d1c69702-199c-4ebf-b301-1d93954fea18.png)
 ![Santiago Orozco Ocampo](https://user-images.githubusercontent.com/102881885/203796455-98425039-7b3b-40c3-9a1b-f41d7839827d.png)
+![Brayan Joseph Perez](https://user-images.githubusercontent.com/102881885/203848659-4a53577c-37c4-46c9-a707-54c1f927dadd.png)

@@ -4,30 +4,90 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plata-si</title>
+    <title>Plata-si hay</title>
+    <link rel="icon" href="img/icon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>Página web de plata si hay</h1>
-    </header>
-    <nav>
-        <p>
-            ¿Tienes una cuenta o quieres crearla?
-            <a href="login.html">INGRESA AQUIÍ</a>
-        </p>
-    </nav>
-    
-    <section>
-        <h2>conoce de este proyecto</h2>
-    </section>
+    <div id="container-preloader">
+        <div id="preloader"></div>
+    </div>
+    <div class="banner">
+        <nav>
+            <img src="img/logo.svg" class="logo">
+            <ul>
+                <li><a href="#contact">Contacto</a></li>
+                <li><a href="login.php">Iniciar sesion</a></li>
+                <li><a href="login.php">Crear cuenta</a></li>
+            </ul>
+        </nav>        
+
+        <div class="content">
+            <h1>el precio lo pones tú</h1>
+            <p>nosotros te damos la información</p>
+            
+            <div class="buttons">
+                <a href="login.php"><button type="button">soy agricultor</button></a>
+                <a href="login.php"><button type="button">soy comerciante</button></a>
+            </div>
+        </div>
+    </div>
     
     <footer>
-        <p>
-            Copyright 2022
-            <a target="_self" href="index.html">volver a la página principal</a>.
-        </p>
+        <div class="container">
+            <div class="section about">
+                <h2>Acerca de nosotros</h2>
+                <p>
+                    Somos un grupo de estudiantes de la Universidad del Quindío que buscan ayudar a reducir la desigualdad de precios que existen a la hora en que se realizan negociaciones entre agricultores y comerciantes del platano en el departamento del Quindío.
+                </p>
+                <ul class="sci">
+                    <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-youtube-play" aria-hidden="true"></i></a></li>
+                </ul>
+            </div>
+            <div class="section quicklinks">
+                <h2>Enlaces de interés</h2>
+                <ul>
+                    <li><a href="#">Acerca de</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Terminos y condiciones</a></li>
+                    <li><a href="#">Ayuda</a></li>
+                    <li><a href="#">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="section contact" id="contact">
+                <h2>Contacto</h2>
+                <ul class="info">
+                    <li>
+                        <span><i class="fa fa-map-marker" aria hidden="true"></i></span>
+                        <span>Armenia, Quindío, 63000<br>COL</span>
+                    </li>
+                    <li>
+                        <span><i class="fa fa-phone" aria hidden="true"></i></span>
+                        <p><a href="tel:1234578900">+57 3152841369</a>
+                            <!-- <br>
+                            <a href="tel:3113387240">+57 3113387240</a></p> -->
+                    </li>
+                    <li>
+                        <span><i class="fa fa-envelope"aria-hidden="true"></i></span>
+                        <p><a href="mailto:jasb@uqvirtual.edu.co">jasb@uqvirtual.edu.co</a></p>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </footer>
-    <script src="login.js"></script>
+    <div class="copyright">
+        <p>Copyright ©2022 JASB professionals. All rights Reserved.</p>
+    </div>
+    <script>
+        var loader = document.getElementById("container-preloader");
+        window.addEventListener("load", function(){
+            loader.style.opacity = 0;
+            loader.style.visibility = "hidden";
+        })
+    </script>
 </body>
 </html>

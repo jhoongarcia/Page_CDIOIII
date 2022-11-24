@@ -4,7 +4,6 @@ require 'conexion.php';
 $message = '';
 
 if ($_POST) {
-    print_r($_POST);
     $nombre = $_POST['name'];
     $apellido = $_POST['surname'];
     $correo = $_POST['email'];
@@ -22,14 +21,17 @@ if ($_POST) {
 
         if ( $records->fetch(PDO::FETCH_ASSOC)) {
             echo "<script> alert('Correo existente') </script>";
+            header("location:login.php");
         } else {
             $sql = "INSERT INTO `registro_clientes` (`Idusuarios`, `Nombres`, `Apellidos`, `Correo`, `Contrasena`, `contra`, `Rol`, `Direccion`, `Municipio`, `Celular`) VALUES (NULL, '$nombre', '$apellido', '$correo', '$contrasena', '$contrasena', '$rol', '$direccion', '$municipio', '$celular');";
             $stmt = $conn->prepare($sql);
 
         if ($stmt->execute()) {
             $message = 'Registro correcto';
+            header("location:login.php");
         } else {
             $message = 'Error al registrar';
+            header("location:login.php");
         }
         }        
     }

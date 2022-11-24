@@ -4,7 +4,6 @@ include "conexion.php";
 
 if ($_POST) {
     $correo = $_POST['email'];
-    print_r($_POST);
     if (!empty($_POST['email']) && !empty($_POST['password'])) {
         $records = $conn->prepare("SELECT * FROM registro_clientes WHERE Correo = '$correo';");
         $records->execute();
@@ -30,7 +29,7 @@ if ($_POST) {
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>login</title>
@@ -111,7 +110,9 @@ if ($_POST) {
             </div>
         </div>
     </div>
-
+    <div class="sign">
+        <p>Desliza hacia al lado para iniciar sesion</p>
+    </div>
     <footer>
         <p>
             Copyright 2022

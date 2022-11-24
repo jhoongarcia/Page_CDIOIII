@@ -36,7 +36,7 @@ if (!empty($_GET['variable'])) {
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plata-si hay-Agricultor</title>
@@ -46,31 +46,42 @@ if (!empty($_GET['variable'])) {
 </head>
 
 <body>
+    <div id="container-preloader">
+        <div id="preloader"></div>
+    </div>
+    <div id="menu_btn">
+        <i class="fa-solid fa-bars"></i>
+    </div>
     <div class="container">
-        <nav>
-            <img src="img/logo.svg" alt="Plata-si hay" class="logo">
-            <ul>
-                <li class="icon"><a href="#"><i class="fas fa-search"></i></a></li>
-                <li class="link"><a href="agricultor.php">Quienes somos</a></li>
+        <nav id="nav_profile">
+            <a href="agricultor.php"><img src="img/logo.svg" alt="Plata-si hay" class="logo"></a>
+            <ul id="nav_ul">
+                <li><a href="agricultor.php">
+                        <span><i class="fa-solid fa-arrow-left"></i></span>
+                        <span>Regresar</span>
+                    </a></li>
                 <hr>
-                <li class="link"><a href="#">Contáctenos</a></li>
-                <li class="icon"><a href="cerrarSesion.php"><i class="fa-solid fa-circle-user"></i></a></li>
+                <li><a href="cerrarSesion.php">
+                        <span><i class="fa-solid fa-right-from-bracket"></i></span>
+                        <span>Cerrar sesión</span>
+                    </a></li>
             </ul>
         </nav>
         <hr>
         <section class="central">
             <div class="municipios">
-                <h2>Tu nombre</h2>
-                <div class="photo">
-                    <!-- <img src="img/logo.png" alt=""> -->
+                <h2>
+                    <?php echo $user['Nombres']; ?>
+                    <?php echo $user['Apellidos']; ?>
+                </h2>
+                <div class="photo" id="prof_photo">
+                    <img src="img/user.png">
                 </div>
-                <a href="#">Soy agricultor</a>
             </div>
             <div class="publicaciones">
                 <div class="information">
                     <div class="information-header">
                         <h2>Tu información</h2>
-                        <a href="#"><button type="button">Editar perfil</button></a>
                     </div>
                     <div class="information-body">
                         <div class="name">
@@ -101,7 +112,9 @@ if (!empty($_GET['variable'])) {
                 </div>
 
                 <div class="my-posts">
-                    <h2>Tus Publicaciones</h2>
+                    <div class="information-header">
+                        <h2>Tus publicaciones</h2>
+                    </div>
                     <?php
                     $sqlPub = $conn->prepare("SELECT * FROM publicación_platano_cliente ORDER BY id DESC;");
                     $sqlPub->execute();
@@ -117,13 +130,13 @@ if (!empty($_GET['variable'])) {
                         if ($_SESSION['user_id'] == $rowUser['Idusuarios']) {
                     ?>
                             <div class="posts">
-                                <!-- <div class="information-header">
+                                <div class="information-header" id="post-header">
                                     <h3><?php echo $rowUser['Nombres']; ?></h3>
                                     <h3><?php echo $rowPublic['Fecha']; ?></h3>
-                                </div> -->
+                                </div>
                                 <div class="body">
                                     <div class="switch">
-                                        <label for="visible<?php echo $rowPublic['ID']; ?>"> <?php if ($rowPublic['visible']) { ?> <i class="fa-solid fa-eye-slash"></i> <?php }else{ ?> <i class="fa-solid fa-eye"></i> <?php } ?>  </label>
+                                        <label for="visible<?php echo $rowPublic['ID']; ?>"> <?php if ($rowPublic['visible']) { ?> <i class="fa-solid fa-eye-slash"></i> <?php } else { ?> <i class="fa-solid fa-eye"></i> <?php } ?> </label>
                                         <input type="checkbox" id="visible<?php echo $rowPublic['ID']; ?>" onchange="visibilidadpublicacion(<?php echo $rowPublic['ID']; ?>)" <?php echo $rowPublic['visible'] ? 'checked' : ''; ?>>
                                     </div>
                                     <div class="datos">
@@ -132,15 +145,15 @@ if (!empty($_GET['variable'])) {
                                             <?php echo $rowPublic['Ubicacion'] . ", " . $rowPublic['Municipio_Residencia']; ?>
                                         </div>
                                         <div class="name">
-                                            <p>Tipo de platano:</p>
+                                            <p>Tipo:</p>
                                             <?php echo $rowPublic['Tipo_Platano']; ?>
                                         </div>
                                         <div class="name">
-                                            <p>Cantidad de platano en Kilos:</p>
+                                            <p>Cantidad:</p>
                                             <?php echo $rowPublic['Cantidad_Producto']; ?>
                                         </div>
                                         <div class="name">
-                                            <p>Precio por kilo:</p>
+                                            <p>Precio:</p>
                                             <?php echo $rowPublic['Precio_Kilo']; ?>
                                         </div>
                                         <div class="name">
@@ -203,6 +216,22 @@ if (!empty($_GET['variable'])) {
     <div class="copyright">
         <p>Copyright ©2022 JASB professionals. All rights Reserved.</p>
     </div>
+    <script>
+        var loader = document.getElementById("container-preloader");
+        var menu = document.getElementById("menu_btn")
+        var nav_profile = document.getElementById("nav_profile")
+        var nav_ul = document.getElementById("nav_ul")
+
+        window.addEventListener("load", function() {
+            loader.style.opacity = 0;
+            loader.style.visibility = "hidden";
+        })
+
+        menu.addEventListener('click', () => {
+            nav_ul.classList.toggle("show");
+            nav_profile.classList.toggle("show");
+        });
+    </script>
 </body>
 
 </html>

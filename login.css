@@ -284,6 +284,10 @@ form h1{
 	transform: translateX(0%);
 }
 
+.sign {
+	display: none;
+}
+
 footer {
     background-color: #1D594F;
     color: #fff;
@@ -307,4 +311,20 @@ footer i {
 footer a {
     color: #3c97bf;
     text-decoration: none;
+}
+  
+@media screen and (max-width: 767px) {
+	body {
+		display: inline-grid;
+	}
+
+	.sign {
+		display: flex;
+		padding-left: 7%;
+	}
+
+	footer {
+		position: relative;
+		width: 50%;
+	}
 }

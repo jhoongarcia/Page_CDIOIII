@@ -84,6 +84,7 @@ if ($_POST && !empty($_POST['tipoPlatano'])) {
 
     if ($stmt->execute()) {
         $message = 'Publicado';
+        header("location:agricultor.php");
     } else {
         $message = 'Error al publicar';
     }
@@ -114,7 +115,7 @@ if (!empty($_POST['filter'])) {
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plata-si hay-Agricultor</title>
@@ -124,10 +125,16 @@ if (!empty($_POST['filter'])) {
 </head>
 
 <body>
+    <div id="container-preloader">
+        <div id="preloader"></div>
+    </div>
+    <div id="menu_btn">
+        <i class="fa-solid fa-bars"></i>
+    </div>
     <div class="container">
-        <nav>
-            <img src="img/logo.svg" alt="Plata-si hay" class="logo">
-            <ul>
+        <nav id="nav">
+            <a href="agricultor.php"><img src="img/logo.svg" alt="Plata-si hay" class="logo"></a>
+            <ul id="nav_ul">
                 <li class="search">
                     <form action="agricultor.php" method="post">
                         <input id="toggle" type="checkbox" name="search">
@@ -184,46 +191,58 @@ if (!empty($_POST['filter'])) {
             <div class="municipios">
                 <h2>Municipios</h2>
                 <ul>
-                    <li><a href="#graphics-modal" onclick="cargarGraficaArmenia()">Armenia</a>
-                        <?php if (end($precioArmenia) > $precioArmenia[count($precioArmenia) - 2]) { ?> <span><i class="fa-solid fa-arrow-trend-up"></i></span> <?php } else { ?> <span><i class="fa-solid fa-arrow-trend-down"></i></span> <?php } ?>
+                    <li><a href="#graphics-modal" onclick="cargarGraficaArmenia()">Armenia
+                            <?php if (end($precioArmenia) > $precioArmenia[count($precioArmenia) - 2]) { ?> <i class="fa-solid fa-arrow-trend-up"></i> <?php } else { ?> <i class="fa-solid fa-arrow-trend-down"></i> <?php } ?>
+                        </a>
                     </li>
-                    <li><a href="#graphics-modal" onclick="cargarGraficaBuenavista()">Buenavista</a>
-                        <?php if (end($precioBuenavista) > $precioBuenavista[count($precioBuenavista) - 2]) { ?> <span><i class="fa-solid fa-arrow-trend-up"></i></span> <?php } else { ?> <span><i class="fa-solid fa-arrow-trend-down"></i></span> <?php } ?>
+                    <li><a href="#graphics-modal" onclick="cargarGraficaBuenavista()">Buenavista
+                            <?php if (end($precioBuenavista) > $precioBuenavista[count($precioBuenavista) - 2]) { ?> <i class="fa-solid fa-arrow-trend-up"></i> <?php } else { ?> <i class="fa-solid fa-arrow-trend-down"></i> <?php } ?>
+                        </a>
                     </li>
-                    <li><a href="#graphics-modal" onclick="cargarGraficaCalarca()">Calarcá</a>
-                        <?php if (end($precioCalarca) > $precioCalarca[count($precioCalarca) - 2]) { ?> <span><i class="fa-solid fa-arrow-trend-up"></i></span> <?php } else { ?> <span><i class="fa-solid fa-arrow-trend-down"></i></span> <?php } ?>
+                    <li><a href="#graphics-modal" onclick="cargarGraficaCalarca()">Calarcá
+                            <?php if (end($precioCalarca) > $precioCalarca[count($precioCalarca) - 2]) { ?> <i class="fa-solid fa-arrow-trend-up"></i> <?php } else { ?> <i class="fa-solid fa-arrow-trend-down"></i> <?php } ?>
+                        </a>
                     </li>
-                    <li><a href="#graphics-modal" onclick="cargarGraficaCircasia()">Circasia</a>
-                        <?php if (end($precioCircasia) > $precioCircasia[count($precioCircasia) - 2]) { ?> <span><i class="fa-solid fa-arrow-trend-up"></i></span> <?php } else { ?> <span><i class="fa-solid fa-arrow-trend-down"></i></span> <?php } ?>
+                    <li><a href="#graphics-modal" onclick="cargarGraficaCircasia()">Circasia
+                            <?php if (end($precioCircasia) > $precioCircasia[count($precioCircasia) - 2]) { ?> <i class="fa-solid fa-arrow-trend-up"></i> <?php } else { ?> <i class="fa-solid fa-arrow-trend-down"></i> <?php } ?>
+                        </a>
                     </li>
-                    <li><a href="#graphics-modal" onclick="cargarGraficaCordoba()">Cordoba</a>
-                        <?php if (end($precioCordoba) > $precioCordoba[count($precioCordoba) - 2]) { ?> <span><i class="fa-solid fa-arrow-trend-up"></i></span> <?php } else { ?> <span><i class="fa-solid fa-arrow-trend-down"></i></span> <?php } ?>
+                    <li><a href="#graphics-modal" onclick="cargarGraficaCordoba()">Cordoba
+                            <?php if (end($precioCordoba) > $precioCordoba[count($precioCordoba) - 2]) { ?> <i class="fa-solid fa-arrow-trend-up"></i> <?php } else { ?> <i class="fa-solid fa-arrow-trend-down"></i> <?php } ?>
+                        </a>
                     </li>
-                    <li><a href="#graphics-modal" onclick="cargarGraficaFilandia()">Filandia</a>
-                        <?php if (end($precioFilandia) > $precioFilandia[count($precioFilandia) - 2]) { ?> <span><i class="fa-solid fa-arrow-trend-up"></i></span> <?php } else { ?> <span><i class="fa-solid fa-arrow-trend-down"></i></span> <?php } ?>
+                    <li><a href="#graphics-modal" onclick="cargarGraficaFilandia()">Filandia
+                            <?php if (end($precioFilandia) > $precioFilandia[count($precioFilandia) - 2]) { ?> <i class="fa-solid fa-arrow-trend-up"></i> <?php } else { ?> <i class="fa-solid fa-arrow-trend-down"></i> <?php } ?>
+                        </a>
                     </li>
-                    <li><a href="#graphics-modal" onclick="cargarGraficaGenova()">Génova</a>
-                        <?php if (end($precioGenova) > $precioGenova[count($precioGenova) - 2]) { ?> <span><i class="fa-solid fa-arrow-trend-up"></i></span> <?php } else { ?> <span><i class="fa-solid fa-arrow-trend-down"></i></span> <?php } ?>
+                    <li><a href="#graphics-modal" onclick="cargarGraficaGenova()">Génova
+                            <?php if (end($precioGenova) > $precioGenova[count($precioGenova) - 2]) { ?> <i class="fa-solid fa-arrow-trend-up"></i> <?php } else { ?> <i class="fa-solid fa-arrow-trend-down"></i> <?php } ?>
+                        </a>
                     </li>
-                    <li><a href="#graphics-modal" onclick="cargarGraficaTebaida()">La tebaida</a>
-                        <?php if (end($precioTebaida) > $precioTebaida[count($precioTebaida) - 2]) { ?> <span><i class="fa-solid fa-arrow-trend-up"></i></span> <?php } else { ?> <span><i class="fa-solid fa-arrow-trend-down"></i></span> <?php } ?>
+                    <li><a href="#graphics-modal" onclick="cargarGraficaTebaida()">La tebaida
+                            <?php if (end($precioTebaida) > $precioTebaida[count($precioTebaida) - 2]) { ?> <i class="fa-solid fa-arrow-trend-up"></i> <?php } else { ?> <i class="fa-solid fa-arrow-trend-down"></i> <?php } ?>
+                        </a>
                     </li>
-                    <li><a href="#graphics-modal" onclick="cargarGraficaMontenegro()">Montenegro</a>
-                        <?php if (end($precioMontenegro) > $precioMontenegro[count($precioMontenegro) - 2]) { ?> <span><i class="fa-solid fa-arrow-trend-up"></i></span> <?php } else { ?> <span><i class="fa-solid fa-arrow-trend-down"></i></span> <?php } ?>
+                    <li><a href="#graphics-modal" onclick="cargarGraficaMontenegro()">Montenegro
+                            <?php if (end($precioMontenegro) > $precioMontenegro[count($precioMontenegro) - 2]) { ?> <i class="fa-solid fa-arrow-trend-up"></i> <?php } else { ?> <i class="fa-solid fa-arrow-trend-down"></i> <?php } ?>
+                        </a>
                     </li>
-                    <li><a href="#graphics-modal" onclick="cargarGraficaPijao()">Pijao</a>
-                        <?php if (end($precioPijao) > $precioPijao[count($precioPijao) - 2]) { ?> <span><i class="fa-solid fa-arrow-trend-up"></i></span> <?php } else { ?> <span><i class="fa-solid fa-arrow-trend-down"></i></span> <?php } ?>
+                    <li><a href="#graphics-modal" onclick="cargarGraficaPijao()">Pijao
+                            <?php if (end($precioPijao) > $precioPijao[count($precioPijao) - 2]) { ?> <i class="fa-solid fa-arrow-trend-up"></i> <?php } else { ?> <i class="fa-solid fa-arrow-trend-down"></i> <?php } ?>
+                        </a>
                     </li>
-                    <li><a href="#graphics-modal" onclick="cargarGraficaQuimbaya()">Quimbaya</a>
-                        <?php if (end($precioQuimbaya) > $precioQuimbaya[count($precioQuimbaya) - 2]) { ?> <span><i class="fa-solid fa-arrow-trend-up"></i></span> <?php } else { ?> <span><i class="fa-solid fa-arrow-trend-down"></i></span> <?php } ?>
+                    <li><a href="#graphics-modal" onclick="cargarGraficaQuimbaya()">Quimbaya
+                            <?php if (end($precioQuimbaya) > $precioQuimbaya[count($precioQuimbaya) - 2]) { ?> <i class="fa-solid fa-arrow-trend-up"></i> <?php } else { ?> <i class="fa-solid fa-arrow-trend-down"></i> <?php } ?>
+                        </a>
                     </li>
-                    <li><a href="#graphics-modal" onclick="cargarGraficaSalento()">Salento</a>
-                        <?php if (end($precioSalento) > $precioSalento[count($precioSalento) - 2]) { ?> <span><i class="fa-solid fa-arrow-trend-up"></i></span> <?php } else { ?> <span><i class="fa-solid fa-arrow-trend-down"></i></span> <?php } ?>
+                    <li><a href="#graphics-modal" onclick="cargarGraficaSalento()">Salento
+                            <?php if (end($precioSalento) > $precioSalento[count($precioSalento) - 2]) { ?> <i class="fa-solid fa-arrow-trend-up"></i> <?php } else { ?> <i class="fa-solid fa-arrow-trend-down"></i> <?php } ?>
+                        </a>
                     </li>
                 </ul>
             </div>
             <div class="publicaciones">
-                <h2>Publicaciones recientes</h2>
+                <h2>Publicaciónes recientes</h2>
                 <?php
                 $sqlPub = $conn->prepare("SELECT * FROM publicación_platano_cliente ORDER BY id DESC;");
                 $sqlPub->execute();
@@ -242,66 +261,329 @@ if (!empty($_POST['filter'])) {
                     $rowUser = $sqlUser->fetch();
                     if ($rowPublic['visible'] == 0) {
                         $count = $count + 1;
-                    // print_r($rowUser);
-                    if (($search == $rowPublic['Municipio_Residencia']) AND ($platano == $rowPublic['Tipo_Platano'])) {
-                        
+                        // print_r($rowUser);
+                        if (($search == $rowPublic['Municipio_Residencia']) and ($platano == $rowPublic['Tipo_Platano'])) {
+                            if ($count % 2 != 0) {
                 ?>
-                            <div>
-                                <div><br><?php echo $rowUser['Nombres']; ?></div>
-                                <div>
-                                    <br> Ubicación: <?php echo $rowPublic['Ubicacion'] . ", " . $rowPublic['Municipio_Residencia']; ?>
-                                    <br> Tipo de platano: <?php echo $rowPublic['Tipo_Platano']; ?>
-                                    <br> Cantidad de platano en kilos: <?php echo $rowPublic['Cantidad_Producto']; ?>
-                                    <br> Precio por kilo: <?php echo $rowPublic['Precio_Kilo']; ?>
-                                    <br> Contacto: <?php echo $rowPublic['Contacto']; ?>
+                                <div class="my-posts">
+                                    <div class="posts">
+                                        <div class="information-header">
+                                            <h3><?php echo $rowUser['Nombres']; ?></h3>
+                                            <h3><?php echo $rowPublic['Fecha']; ?></h3>
+                                        </div>
+                                        <div class="body">
+                                            <div class="photo">
+                                                <img src="img/user.png">
+                                            </div>
+                                            <div class="datos">
+                                                <div class="name">
+                                                    <p>Ubicación:</p>
+                                                    <?php echo $rowPublic['Ubicacion'] . ", " . $rowPublic['Municipio_Residencia']; ?>
+                                                </div>
+                                                <div class="name">
+                                                    <p>Tipo:</p>
+                                                    <?php echo $rowPublic['Tipo_Platano']; ?>
+                                                </div>
+                                                <div class="name">
+                                                    <p>Cantidad en Kilos:</p>
+                                                    <?php echo $rowPublic['Cantidad_Producto']; ?>
+                                                </div>
+                                                <div class="name">
+                                                    <p>Precio por kilo:</p>
+                                                    <?php echo $rowPublic['Precio_Kilo']; ?>
+                                                </div>
+                                                <div class="name">
+                                                    <p>Contacto:</p>
+                                                    <?php echo $rowPublic['Contacto']; ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <br>
-                        <?php 
-                    } elseif ($search == 'todos' AND $platano == 'todos') {
-                        ?>
-                        <div>
-                            <div><br><?php echo $rowUser['Nombres']; ?></div>
-                            <div>
-                                <br> Ubicación: <?php echo $rowPublic['Ubicacion'] . ", " . $rowPublic['Municipio_Residencia']; ?>
-                                <br> Tipo de platano: <?php echo $rowPublic['Tipo_Platano']; ?>
-                                <br> Cantidad de platano en kilos: <?php echo $rowPublic['Cantidad_Producto']; ?>
-                                <br> Precio por kilo: <?php echo $rowPublic['Precio_Kilo']; ?>
-                                <br> Contacto: <?php echo $rowPublic['Contacto']; ?>
-                            </div>
-                        </div>
-                        <br>
+                                <br>
+                            <?php
+                            } elseif ($count % 2 == 0) {
+                            ?>
+                                <div class="my-posts">
+                                    <div class="posts right">
+                                        <div class="information-header">
+                                            <h3><?php echo $rowPublic['Fecha']; ?></h3>
+                                            <h3><?php echo $rowUser['Nombres']; ?></h3>
+                                        </div>
+                                        <div class="body">
+                                            <div class="datos">
+                                            <div class="name">
+                                                    <p>Ubicación:</p>
+                                                    <?php echo $rowPublic['Ubicacion'] . ", " . $rowPublic['Municipio_Residencia']; ?>
+                                                </div>
+                                                <div class="name">
+                                                    <p>Tipo:</p>
+                                                    <?php echo $rowPublic['Tipo_Platano']; ?>
+                                                </div>
+                                                <div class="name">
+                                                    <p>Cantidad en Kilos:</p>
+                                                    <?php echo $rowPublic['Cantidad_Producto']; ?>
+                                                </div>
+                                                <div class="name">
+                                                    <p>Precio por kilo:</p>
+                                                    <?php echo $rowPublic['Precio_Kilo']; ?>
+                                                </div>
+                                                <div class="name">
+                                                    <p>Contacto:</p>
+                                                    <?php echo $rowPublic['Contacto']; ?>
+                                                </div>
+                                            </div>
+                                            <div class="photo-right">
+                                                <img src="img/user.png">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                            <?php
+                            }
+                        } elseif ($search == 'todos' and $platano == 'todos') {
+                            if ($count % 2 != 0) {
+                            ?>
+                                <div class="my-posts">
+                                    <div class="posts">
+                                        <div class="information-header">
+                                            <h3><?php echo $rowUser['Nombres']; ?></h3>
+                                            <h3><?php echo $rowPublic['Fecha']; ?></h3>
+                                        </div>
+                                        <div class="body">
+                                            <div class="photo">
+                                                <img src="img/user.png">
+                                            </div>
+                                            <div class="datos">
+                                            <div class="name">
+                                                    <p>Ubicación:</p>
+                                                    <?php echo $rowPublic['Ubicacion'] . ", " . $rowPublic['Municipio_Residencia']; ?>
+                                                </div>
+                                                <div class="name">
+                                                    <p>Tipo:</p>
+                                                    <?php echo $rowPublic['Tipo_Platano']; ?>
+                                                </div>
+                                                <div class="name">
+                                                    <p>Cantidad en Kilos:</p>
+                                                    <?php echo $rowPublic['Cantidad_Producto']; ?>
+                                                </div>
+                                                <div class="name">
+                                                    <p>Precio por kilo:</p>
+                                                    <?php echo $rowPublic['Precio_Kilo']; ?>
+                                                </div>
+                                                <div class="name">
+                                                    <p>Contacto:</p>
+                                                    <?php echo $rowPublic['Contacto']; ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                            <?php
+                            } elseif ($count % 2 == 0) {
+                            ?>
+                                <div class="my-posts">
+                                    <div class="posts right">
+                                        <div class="information-header">
+                                            <h3><?php echo $rowPublic['Fecha']; ?></h3>
+                                            <h3><?php echo $rowUser['Nombres']; ?></h3>
+                                        </div>
+                                        <div class="body">
+                                            <div class="datos">
+                                            <div class="name">
+                                                    <p>Ubicación:</p>
+                                                    <?php echo $rowPublic['Ubicacion'] . ", " . $rowPublic['Municipio_Residencia']; ?>
+                                                </div>
+                                                <div class="name">
+                                                    <p>Tipo:</p>
+                                                    <?php echo $rowPublic['Tipo_Platano']; ?>
+                                                </div>
+                                                <div class="name">
+                                                    <p>Cantidad en Kilos:</p>
+                                                    <?php echo $rowPublic['Cantidad_Producto']; ?>
+                                                </div>
+                                                <div class="name">
+                                                    <p>Precio por kilo:</p>
+                                                    <?php echo $rowPublic['Precio_Kilo']; ?>
+                                                </div>
+                                                <div class="name">
+                                                    <p>Contacto:</p>
+                                                    <?php echo $rowPublic['Contacto']; ?>
+                                                </div>
+                                            </div>
+                                            <div class="photo-right">
+                                                <img src="img/user.png">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                            <?php
+                            }
+                        } elseif ($search == 'todos' and $platano == $rowPublic['Tipo_Platano']) {
+                            if ($count % 2 != 0) {
+                            ?>
+                                <div class="my-posts">
+                                    <div class="posts">
+                                        <div class="information-header">
+                                            <h3><?php echo $rowUser['Nombres']; ?></h3>
+                                            <h3><?php echo $rowPublic['Fecha']; ?></h3>
+                                        </div>
+                                        <div class="body">
+                                            <div class="photo">
+                                                <img src="img/user.png">
+                                            </div>
+                                            <div class="name">
+                                                    <p>Ubicación:</p>
+                                                    <?php echo $rowPublic['Ubicacion'] . ", " . $rowPublic['Municipio_Residencia']; ?>
+                                                </div>
+                                                <div class="name">
+                                                    <p>Tipo:</p>
+                                                    <?php echo $rowPublic['Tipo_Platano']; ?>
+                                                </div>
+                                                <div class="name">
+                                                    <p>Cantidad en Kilos:</p>
+                                                    <?php echo $rowPublic['Cantidad_Producto']; ?>
+                                                </div>
+                                                <div class="name">
+                                                    <p>Precio por kilo:</p>
+                                                    <?php echo $rowPublic['Precio_Kilo']; ?>
+                                                </div>
+                                                <div class="name">
+                                                    <p>Contacto:</p>
+                                                    <?php echo $rowPublic['Contacto']; ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                            <?php
+                            } elseif ($count % 2 == 0) {
+                            ?>
+                                <div class="my-posts">
+                                    <div class="posts right">
+                                        <div class="information-header">
+                                            <h3><?php echo $rowPublic['Fecha']; ?></h3>
+                                            <h3><?php echo $rowUser['Nombres']; ?></h3>
+                                        </div>
+                                        <div class="body">
+                                            <div class="datos">
+                                            <div class="name">
+                                                    <p>Ubicación:</p>
+                                                    <?php echo $rowPublic['Ubicacion'] . ", " . $rowPublic['Municipio_Residencia']; ?>
+                                                </div>
+                                                <div class="name">
+                                                    <p>Tipo:</p>
+                                                    <?php echo $rowPublic['Tipo_Platano']; ?>
+                                                </div>
+                                                <div class="name">
+                                                    <p>Cantidad en Kilos:</p>
+                                                    <?php echo $rowPublic['Cantidad_Producto']; ?>
+                                                </div>
+                                                <div class="name">
+                                                    <p>Precio por kilo:</p>
+                                                    <?php echo $rowPublic['Precio_Kilo']; ?>
+                                                </div>
+                                                <div class="name">
+                                                    <p>Contacto:</p>
+                                                    <?php echo $rowPublic['Contacto']; ?>
+                                                </div>
+                                            </div>
+                                            <div class="photo-right">
+                                                <img src="img/user.png">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                            <?php
+                            }
+                        } elseif ($search == $rowPublic['Municipio_Residencia'] and $platano == 'todos') {
+                            if ($count % 2 != 0) {
+                            ?>
+                                <div class="my-posts">
+                                    <div class="posts">
+                                        <div class="information-header">
+                                            <h3><?php echo $rowUser['Nombres']; ?></h3>
+                                            <h3><?php echo $rowPublic['Fecha']; ?></h3>
+                                        </div>
+                                        <div class="body">
+                                            <div class="photo">
+                                                <img src="img/user.png">
+                                            </div>
+                                            <div class="datos">
+                                            <div class="name">
+                                                    <p>Ubicación:</p>
+                                                    <?php echo $rowPublic['Ubicacion'] . ", " . $rowPublic['Municipio_Residencia']; ?>
+                                                </div>
+                                                <div class="name">
+                                                    <p>Tipo:</p>
+                                                    <?php echo $rowPublic['Tipo_Platano']; ?>
+                                                </div>
+                                                <div class="name">
+                                                    <p>Cantidad en Kilos:</p>
+                                                    <?php echo $rowPublic['Cantidad_Producto']; ?>
+                                                </div>
+                                                <div class="name">
+                                                    <p>Precio por kilo:</p>
+                                                    <?php echo $rowPublic['Precio_Kilo']; ?>
+                                                </div>
+                                                <div class="name">
+                                                    <p>Contacto:</p>
+                                                    <?php echo $rowPublic['Contacto']; ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                            <?php
+                            } elseif ($count % 2 == 0) {
+                            ?>
+                                <div class="my-posts">
+                                    <div class="posts right">
+                                        <div class="information-header">
+                                            <h3><?php echo $rowPublic['Fecha']; ?></h3>
+                                            <h3><?php echo $rowUser['Nombres']; ?></h3>
+                                        </div>
+                                        <div class="body">
+                                            <div class="datos">
+                                            <div class="name">
+                                                    <p>Ubicación:</p>
+                                                    <?php echo $rowPublic['Ubicacion'] . ", " . $rowPublic['Municipio_Residencia']; ?>
+                                                </div>
+                                                <div class="name">
+                                                    <p>Tipo:</p>
+                                                    <?php echo $rowPublic['Tipo_Platano']; ?>
+                                                </div>
+                                                <div class="name">
+                                                    <p>Cantidad en Kilos:</p>
+                                                    <?php echo $rowPublic['Cantidad_Producto']; ?>
+                                                </div>
+                                                <div class="name">
+                                                    <p>Precio por kilo:</p>
+                                                    <?php echo $rowPublic['Precio_Kilo']; ?>
+                                                </div>
+                                                <div class="name">
+                                                    <p>Contacto:</p>
+                                                    <?php echo $rowPublic['Contacto']; ?>
+                                                </div>
+                                            </div>
+                                            <div class="photo-right">
+                                                <img src="img/user.png">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
                 <?php
-                    } elseif ($search == 'todos' AND $platano == $rowPublic['Tipo_Platano']) {
-                 ?>
-                 <div>
-                            <div><br><?php echo $rowUser['Nombres']; ?></div>
-                            <div>
-                                <br> Ubicación: <?php echo $rowPublic['Ubicacion'] . ", " . $rowPublic['Municipio_Residencia']; ?>
-                                <br> Tipo de platano: <?php echo $rowPublic['Tipo_Platano']; ?>
-                                <br> Cantidad de platano en kilos: <?php echo $rowPublic['Cantidad_Producto']; ?>
-                                <br> Precio por kilo: <?php echo $rowPublic['Precio_Kilo']; ?>
-                                <br> Contacto: <?php echo $rowPublic['Contacto']; ?>
-                            </div>
-                        </div>
-                        <br>
-                <?php
-                    }elseif ($search == $rowPublic['Municipio_Residencia'] AND $platano == 'todos') {
-                 ?>
-                 <div>
-                            <div><br><?php echo $rowUser['Nombres']; ?></div>
-                            <div>
-                                <br> Ubicación: <?php echo $rowPublic['Ubicacion'] . ", " . $rowPublic['Municipio_Residencia']; ?>
-                                <br> Tipo de platano: <?php echo $rowPublic['Tipo_Platano']; ?>
-                                <br> Cantidad de platano en kilos: <?php echo $rowPublic['Cantidad_Producto']; ?>
-                                <br> Precio por kilo: <?php echo $rowPublic['Precio_Kilo']; ?>
-                                <br> Contacto: <?php echo $rowPublic['Contacto']; ?>
-                            </div>
-                        </div>
-                        <br>
-                <?php
+                            }
+                        }
                     }
-                }} ?>
+                } ?>
                 <form action="agricultor.php" method="post">
                     <input type="text" name="search-muni" id="search-muni" value=<?php echo $search; ?>>
                     <input type="text" name="search-platano" id="search-platano" value=<?php echo $platano; ?>>
@@ -364,9 +646,8 @@ if (!empty($_POST['filter'])) {
                 <!-- <p class="modal_description">Descripcion de lo que hace este modal</p> -->
             </div>
             <hr>
-            <p class="modal_text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore ducimus fugit eaque neque, consequatur ipsum mollitia ipsam temporibus reprehenderit a natus distinctio explicabo perspiciatis accusantium assumenda? Cumque quaerat voluptatibus neque.</p>
+            <!-- <p class="modal_text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore ducimus fugit eaque neque, consequatur ipsum mollitia ipsam temporibus reprehenderit a natus distinctio explicabo perspiciatis accusantium assumenda? Cumque quaerat voluptatibus neque.</p> -->
             <form action="agricultor.php" method="post">
-                <h1>Crea tu cuenta</h1>
                 <input type="text" name="finca" placeholder="Ubicación de la finca">
                 <select name="tipoPlatano" id="type_plat">
                     <option value="-1" disabled selected>Tipo de platano:</option>
@@ -392,10 +673,8 @@ if (!empty($_POST['filter'])) {
                     <option value="salento">Salento</option>
                 </select>
                 <input type="text" name="contacto" placeholder="contacto">
-                <input type="text" name="tiempoCosecha" placeholder="Tiempo de cosecha">
                 <button id="register" class="smt_form">Publicar</button>
             </form>
-            <button class="modal_btn">Enviar</button>
         </div>
         <a href="#!" class="outside-trigger"></a>
     </div>
@@ -412,6 +691,23 @@ if (!empty($_POST['filter'])) {
         </div>
         <a href="#!" class="outside-trigger"></a>
     </div>
+
+    <script>
+        var loader = document.getElementById("container-preloader");
+        var menu = document.getElementById("menu_btn")
+        var nav = document.getElementById("nav")
+        var nav_ul = document.getElementById("nav_ul")
+
+        window.addEventListener("load", function() {
+            loader.style.opacity = 0;
+            loader.style.visibility = "hidden";
+        })
+
+        menu.addEventListener('click', () => {
+            nav_ul.classList.toggle("show");
+            nav.classList.toggle("show");
+        });
+    </script>
 </body>
 
 </html>
